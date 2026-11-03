@@ -15,7 +15,7 @@ class ContactPage(BasePage):
         self.upload = page.locator("input[name='upload_file']")
         self.submit_btn = page.locator("[data-qa='submit-button']")
         self.success_msg = page.locator("div.status.alert.alert-success")
-        self.home_link = page.get_by_role("link", name="Home")
+        self.home_link = page.locator("#form-section a[href='/']")
 
     def open(self):
         super().open("/contact_us")

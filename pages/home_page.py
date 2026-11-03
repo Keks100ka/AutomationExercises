@@ -35,6 +35,7 @@ class HomePage(BasePage):
 
     def go_to_contact_us(self):
         self.click(self.contact_us_link)
+        self.page.wait_for_load_state("domcontentloaded")
         return self
 
     def logout(self):
