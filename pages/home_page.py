@@ -10,12 +10,17 @@ class HomePage(BasePage):
         # Навигация
         self.signup_login_link = page.get_by_role("link", name="Signup / Login")
         self.products_link = page.get_by_role("link", name="Products")
+        self.cart_link = page.locator("a[href='/view_cart']").first
         self.test_cases_link = page.get_by_role("link", name="Test Cases", exact=True).first
         self.contact_us_link = page.get_by_role("link", name="Contact us")
         self.logout_link = page.get_by_role("link", name="Logout")
         self.delete_account_link = page.get_by_role("link", name="Delete Account")
         # Индикатор входа
         self.logged_in_as = page.get_by_text("Logged in as")
+        self.subscription_title = page.get_by_role("heading", name="Subscription")
+        self.subscription_email = page.locator("#susbscribe_email")
+        self.subscribe_button = page.locator("#subscribe")
+        self.subscription_success = page.get_by_text("You have been successfully subscribed!")
 
     def open(self):
         super().open("/")
@@ -27,6 +32,15 @@ class HomePage(BasePage):
 
     def go_to_products(self):
         self.click(self.products_link)
+        return self
+
+    def go_to_cart(self):
+        self.click(self.cart_link)
+        return self
+
+    def subscribe(self, email: str):
+        self.fill(self.subscription_email, email)
+        self.click(self.subscribe_button)
         return self
 
     def go_to_test_cases(self):
